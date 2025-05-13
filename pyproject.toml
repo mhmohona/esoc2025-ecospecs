@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=67.8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecospecs"
+version = "0.1.0"
+description = "ecoSPECS document processor"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "python-docx>=0.8.11",
+    "pdfplumber>=0.9.0"
+]
+
+[project.scripts]
+ecospecs-parse = "ecospecs.parsing.cli:main"
+ecospecs-generate = "ecospecs.genai.cli:main"

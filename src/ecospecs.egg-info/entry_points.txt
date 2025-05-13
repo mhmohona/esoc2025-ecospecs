@@ -1,0 +1,3 @@
+[console_scripts]
+ecospecs-generate = ecospecs.genai.cli:main
+ecospecs-parse = ecospecs.parsing.cli:main

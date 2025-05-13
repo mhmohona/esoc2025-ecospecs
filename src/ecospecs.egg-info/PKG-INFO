@@ -1,3 +1,12 @@
+Metadata-Version: 2.4
+Name: ecospecs
+Version: 0.1.0
+Summary: ecoSPECS document processor
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: python-docx>=0.8.11
+Requires-Dist: pdfplumber>=0.9.0
+
 # esoc2025-ecospecs
 
 ## Future Plan
