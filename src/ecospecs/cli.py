@@ -1,3 +1,4 @@
+import os 
 import typer
 from pathlib import Path
 from typing import List, Optional
@@ -26,15 +27,16 @@ def parse(
         typer.secho(f"✅ Saved {len(tables)} tables to {output_path}", fg="green")
         
         # Display results in console
-        typer.echo(f"\nFound {len(tables)} tables in {file_path}")
-        for i, table in enumerate(tables, 1):
-            typer.echo(f"\nTable {i}:")
-            for row in table:
-                typer.echo(" | ".join(row))
+        # typer.echo(f"\nFound {len(tables)} tables in {file_path}")
+        # for i, table in enumerate(tables, 1):
+        #     typer.echo(f"\nTable {i}:")
+        #     for row in table:
+        #         typer.echo(" | ".join(row))
                 
     except Exception as e:
         typer.secho(f"❌ Error: {str(e)}", fg="red")
 
+# cli.py
 @app.command()
 def generate(
     prompt: str,
@@ -46,18 +48,15 @@ def generate(
         help="Output file path (.docx)"
     )
 ):
-    """Generate tables using GenAI and save as .docx if output path is given"""
+    """Generate tables using OSS models"""
     try:
-        typer.echo("🔮 Generating table...")
+        typer.secho("🔮 Generating table...", fg="blue")
         typer.echo(f"📝 Prompt: {prompt}")
         typer.echo(f"🏷️ Headers: {headers}")
-        
-        generated_table = [
-            headers,
-            ["Sample Data 1", "Sample Spec 1", "Class A"],
-            ["Sample Data 2", "Sample Spec 2", "Class B"]
-        ]
-        
+
+        from ecospecs.genai.table_generator import generate_table
+        generated_table = generate_table(prompt, headers)
+
         if output_file:
             output_file = output_file.with_suffix(".docx")
             save_tables([generated_table], output_file, "docx")
@@ -69,6 +68,6 @@ def generate(
                 
     except Exception as e:
         typer.secho(f"❌ Error: {str(e)}", fg="red")
-
+        
 if __name__ == "__main__":
     app()

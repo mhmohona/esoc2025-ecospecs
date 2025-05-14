@@ -1,0 +1,6 @@
+# Malformed Table Document
+
+## Table with Issues
+| Header1 | Header2 |
+| Data1   |         |  // Missing cell
+| Data3              |  // Incomplete row
